@@ -6,18 +6,22 @@
         <div class="m-5"> {# margin : 5 #}
             <h4>{{ target_user.username }}</h4>
         </div>
+
         <div>
             {{ target_user.date_joined }}
         </div>
+
+        {% if user == target_user %}
         <div>
-                <a href="{% url 'acountapp:update' pk=user.pk %}">
+                <a href="{% url 'acountapp:update' pk=target_user.pk %}">
                     Update Info
                 </a>
         </div>
-          <div>
-                <a href="{% url 'acountapp:delete' pk=user.pk %}">
+        <div>
+                <a href="{% url 'acountapp:delete' pk=target_user.pk %}">
                     Quit
                 </a>
         </div>
+        {% endif %}
     </div>
 {% endblock %}
