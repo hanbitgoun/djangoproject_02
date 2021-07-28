@@ -13,6 +13,7 @@ from acountapp.decorators import account_ownership_required
 from acountapp.forms import AccountCreationForm
 from acountapp.models import HelloWorld
 
+
 @login_required(login_url=reverse_lazy('acountapp:login'))
 def hello_world(request):
     if request.user.is_authenticated:
@@ -39,15 +40,20 @@ def hello_world(request):
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy('acountapp:hello_world')
     template_name = 'acountapp/create.html'
+
+    def get_success_url(self):
+        return reverse('acountapp:detail', kwargs={'pk': self.object.pk})
+
 
 class AccountDetailView(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = 'acountapp/detail.html'
 
+
 has_ownership = [login_required, account_ownership_required]
+
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
@@ -55,8 +61,11 @@ class AccountUpdateView(UpdateView):
     model = User
     form_class = AccountCreationForm
     context_object_name = 'target_user'
-    success_url = reverse_lazy('acountapp:hello_world')
     template_name = 'acountapp/update.html'
+
+    def get_success_url(self):
+        return reverse('acountapp:detail', kwargs={'pk': self.object.pk})
+
 
 @method_decorator(has_ownership, 'get')
 @method_decorator(has_ownership, 'post')
