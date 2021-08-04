@@ -18,6 +18,11 @@
                 class="btn btn-success rounded-pill px-5">
                     Update
                 </a>
+
+                 <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
+                class="btn btn-danger rounded-pill px-5">
+                    Delete
+                </a>
             </div>
         </div>
 
