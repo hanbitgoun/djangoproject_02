@@ -11,7 +11,7 @@
           align-items: center;
           border-radius: 1rem;
             flex-direction: column;
-            box-shadow: 0 0 1rem;
+            box-shadow: 0 0 1rem darkgrey;
         }
 
         div img{
@@ -30,7 +30,7 @@
                 <a href="{% url 'articleapp:detail' pk=article.pk %}">
                     <img src="{{ article.image.url }}", alt="">
                 </a>
-            <span class="NNS_B m-2">{{ article.title }}</span>
+                <span class="NNS_B m-2">{{ article.title }}</span>
             </div>
 
         {% endfor %}
@@ -40,5 +40,6 @@
 
     <script src="{% static 'js/magicgrid.js' %}"></script>
 
+    {% include 'snippets/pagination.html' %}
 
 {% endblock %}
