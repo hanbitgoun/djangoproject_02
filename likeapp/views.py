@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
@@ -19,12 +20,14 @@ class LikeArticleView(RedirectView):
         likerecord = LikeRecord.objects.filter(user=user, article=article)
 
         if likerecord.exists():
+            messages.add_message(request, messages.ERROR, '좋아요는 한 번만 가능합니다')
             return HttpResponseRedirect(reverse('articleapp:detail', kwargs={'pk': kwargs['article_pk']}))
         else:
             LikeRecord(user=user, article=article).save()
 
         article.like += 1
         article.save()
+        messages.add_message(request, messages.SUCCESS, '좋아요가 반영되었습니다')
 
         return super().get(request, *args, **kwargs)
 
