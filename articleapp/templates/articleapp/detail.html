@@ -22,13 +22,14 @@
             <p>{{ target_article.created_at }}</p>
         </div>
         <hr>
+        {#    게시글 내용#}
         <div class="my-5">
             <img src="{{ target_article.image.url }}"
                  alt=""
                  class="article_image">
 
             <div class="article_content">
-                {{ target_article.content }}
+                {{ target_article.content | safe }}
             </div>
 
             {% if target_article.writer == user %}
