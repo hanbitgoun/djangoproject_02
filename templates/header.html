@@ -3,19 +3,19 @@
         <h1>Pragmatic</h1>
     </div>
     <div class="pragmatic_header_button">
-        <span>
+        <span class="mx-2">
             <a href="{% url 'articleapp:list' %}">
                 Articles
             </a>
         </span>
-        <span>
+        <span class="mx-2">
             <a href="{% url 'projectapp:list' %}">
                 Projects
             </a>
         </span>
 
         {% if user.is_authenticated %}
-        <span>
+        <span class="mx-2">
             <a href="{% url 'subscribeapp:list' %}">
                 Subscribe
             </a>
@@ -23,23 +23,23 @@
         {% endif %}
 
         {% if not user.is_authenticated %}
-        <span>
+        <span class="mx-2">
             <a href="{% url 'acountapp:login' %}">
                 Login
             </a>
         </span>
-        <span>
+        <span class="mx-2">
             <a href="{% url 'acountapp:create' %}">
                 SignUp
             </a>
         </span>
         {% else %}
-            <span>
+            <span class="mx-2">
                 <a href="{% url 'acountapp:detail' pk=user.pk %}">
                 MyPage
                 </a>
             </span>
-            <span>
+            <span class="mx-2">
                 <a href="{% url 'acountapp:logout' %}">
                     Logout
                 </a>
