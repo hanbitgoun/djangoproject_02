@@ -10,8 +10,9 @@ from profileapp.decorators import profile_ownership_required
 from profileapp.forms import ProfileCreationForm
 from profileapp.models import Profile
 
-@method_decorator(login_required, 'get')
-@method_decorator(login_required, 'post')
+
+@method_decorator(login_required(login_url='/acounts/login/'), 'get')
+@method_decorator(login_required(login_url='/acounts/login/'), 'post')
 class ProfileCreateView(CreateView):
     model = Profile
     form_class = ProfileCreationForm
@@ -23,6 +24,7 @@ class ProfileCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('acountapp:detail', kwargs={'pk': self.object.user.pk})
+
 
 @method_decorator(profile_ownership_required, 'get')
 @method_decorator(profile_ownership_required, 'post')

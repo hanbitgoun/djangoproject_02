@@ -13,8 +13,8 @@ from articleapp.models import Article
 from commentapp.forms import CommentCreationForm
 
 
-@method_decorator(login_required, 'get')
-@method_decorator(login_required, 'post')
+@method_decorator(login_required(login_url='/acounts/login/'), 'get')
+@method_decorator(login_required(login_url='/acounts/login/'), 'post')
 class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleCreationForm

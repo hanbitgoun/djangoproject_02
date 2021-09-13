@@ -11,7 +11,7 @@ from projectapp.models import Project
 from subscribeapp.models import Subscription
 
 
-@method_decorator(login_required, 'get')
+@method_decorator(login_required(login_url='/acounts/login/'), 'get')
 class SubscriptionView(RedirectView):
 
     def get(self, request, *args, **kwargs):
@@ -31,7 +31,7 @@ class SubscriptionView(RedirectView):
         return reverse('projectapp:detail', kwargs={'pk': kwargs['project_pk']})
 
 
-@method_decorator(login_required, 'get')
+@method_decorator(login_required(login_url='/acounts/login/'), 'get')
 class SubscribeListView(ListView):
     model = Article
     context_object_name = 'article_list'

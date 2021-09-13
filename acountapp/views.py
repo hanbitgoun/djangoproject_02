@@ -37,7 +37,7 @@ class AccountDetailView(DetailView, MultipleObjectMixin):
         return super().get_context_data(object_list=article_list, **kwargs)
 
 
-has_ownership = [login_required, account_ownership_required]
+has_ownership = [login_required(login_url='/acounts/login/'), account_ownership_required]
 
 
 @method_decorator(has_ownership, 'get')

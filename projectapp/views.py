@@ -13,8 +13,8 @@ from projectapp.models import Project
 from subscribeapp.models import Subscription
 
 
-@method_decorator(login_required, 'get')
-@method_decorator(login_required, 'post')
+@method_decorator(login_required(login_url='/acounts/login/'), 'get')
+@method_decorator(login_required(login_url='/acounts/login/'), 'post')
 class ProjectCreateView(CreateView):
     model = Project
     form_class = ProjectCreationForm
